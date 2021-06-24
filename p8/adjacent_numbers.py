@@ -27,32 +27,44 @@
 #  value of this product?
 # 
 
+# Retrieve the larger number from the file
 file = open('/home/przb/Workspaces/euler/p8/big_number.txt', 'r')
-BIG_NUMBER = file.read()
-BIG_NUMBER = BIG_NUMBER.strip().replace("\n", "")
+BIG_NUMBER = file.read().strip().replace("\n", "")
 file.close()
-adjacency = 13
-i = 0
-total = 0
-finalTotal = 0
-largestThirteen = 0
-product = 1
+
+# Declare some variables 
+adjacency = 13          # how many adjacent numbers to use
+i = 0                   # index for offset of numbers that were adjacent
+largestProduct = 1      # Final product to store the largest product
+largestThirteen = 0     # The number that gives the numbers that equal the largestProduct
+tempProduct = 1         # Temporary to store the product of some numbers
+
 
 while i <= len(BIG_NUMBER) - adjacency:
-    adjacentDigits = BIG_NUMBER[i:i + adjacency]
-    for digit in adjacentDigits:
-        total += int(digit)
-        if digit == 0:
-            break
-        if finalTotal < total and adjacentDigits.count("0") == 0:
-            finalTotal = total
-            largestThirteen = adjacentDigits
-        
 
-    total = 0
+    # The adjacent numbers start with 0:13, then 1:14, then 2:15 and so on
+    tempDigits = BIG_NUMBER[i:i + adjacency]
+
+
+    for digit in tempDigits:
+
+        # find the temporary product
+        tempProduct *= int(digit)
+
+        # if the largest product is less than the temp product make, make the largest product 
+        # equal to the temp, and set the largest 13 to the current thirteen
+        if largestProduct < tempProduct:
+
+
+            largestProduct = tempProduct
+
+
+            largestThirteen = tempDigits
+
+    # reset the product back to 1 and increment the index
+    tempProduct = 1
     i += 1
-print(largestThirteen)
-for num in str(largestThirteen):
-    product = product * int(num)
 
-print(product)
+# at the end, print the results
+print(largestThirteen)
+print(largestProduct)
