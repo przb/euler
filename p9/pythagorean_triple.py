@@ -6,34 +6,60 @@
 # There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 # Find the product abc.
 
-import math
+
+# Found this online for finding pythagorean triples
+# When m and n are any two positive integers (m > n):
+#
+#    a = m^2 − n^2
+#    b = 2mn
+#    c = m^2 + n^2
 
 
-def is_triple(ayy, bee):
-    cSquared = math.pow(ayy, 2) + math.pow(bee, 2)
-    if math.pow(int(math.sqrt(cSquared)), 2) == cSquared:
+# Turning into code what is written above, as a function. returns as a list
+def make_triple(m, n):
+   a = (m * m) - (n * n)
+   b = 2 * m * n
+   c = (m * m) + (n * n)
+   triple = [a, b, c]
+   triple.sort()
+   return triple
+
+# test to see if all the elements of the triple are equal to a majic number (which will be 100 for us)
+def majic_triple_test(testTriple, majicNum):
+    total = 0
+    for side in testTriple:
+        total += side 
+    if total == majicNum:
         return True
-    else: 
+    else:
         return False
 
-# p^2 + q^2 = r^2
-# p is always odd
-# q = (p^2 - 1)/2
-# 
-# 
-# 
-# 
 
-triples = []
-tempList = []
-limit = 100
-p = 1
-a = 1
-b = 2
-c = 3
+i = 1
+j = 2
 
-while p < limit:
-    q = ((p * p) - 1) / 2
-    if math.pow(int(q), 2) == math.pow(q, 2):
-        print(f"{p}^2 + {int(q)}^2 = r ")
-    p += 2
+# nested loop, J must be bigger than I
+while j < 1000:
+
+    # While i is less than j, make a triple
+    while i < j:
+        magicTriple = make_triple(j, i)
+        
+        # then check to see if its majic, if so, find the product, and print
+        if majic_triple_test(magicTriple, 1000):
+
+            product = 1
+
+            for triplet in magicTriple:
+                product *= triplet
+
+            print(magicTriple, product)
+
+        # increment i, while I is less than J
+        i += 1
+
+    # Increment J until it is 1000
+    j += 1
+
+    #reset I to 1
+    i = 1
