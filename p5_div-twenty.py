@@ -6,7 +6,7 @@
 
 # Its hard to explain in typing what how this mathematically works, but it does work
 
-import prime_factors
+import custom_math_functions
 
 # Set the number in the goal
 divByAllNum = 20
@@ -23,7 +23,7 @@ while  i <= divByAllNum:
 
     # Calls upon my other method that finds all the prime factors of i
         
-    primeFactors = prime_factors.find_all_prime_factors(i)
+    primeFactors = custom_math_functions.find_all_prime_factors(i)
     i += 1
 
     # Adds a prime factor to allFactors, if there are more of said prime factor in

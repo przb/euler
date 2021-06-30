@@ -4,6 +4,8 @@
 # 
 # What is the 10 001st prime number?
 
+import custom_math_functions
+
 #initialize two indexes started with relevant prime numbers
 i = 3
 j = 2

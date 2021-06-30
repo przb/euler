@@ -28,7 +28,7 @@
 # 
 
 # Retrieve the larger number from the file
-file = open('/home/przb/Workspaces/euler/p8/big_number.txt', 'r')
+file = open('/home/przb/Workspaces/euler/p8_big_number.txt', 'r')
 BIG_NUMBER = file.read().strip().replace("\n", "")
 file.close()
 
@@ -66,5 +66,5 @@ while i <= len(BIG_NUMBER) - adjacency:
     i += 1
 
 # at the end, print the results
-print(largestThirteen)
-print(largestProduct)
+print(f"Largest Thirteen adjacencies: {largestThirteen}")
+print(f"Largest Product: {largestProduct}")

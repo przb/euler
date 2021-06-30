@@ -5,13 +5,13 @@
 # Find the largest palindrome made from 
 # the product of two 3-digit numbers.
 
-import dec_mult
+import custom_math_functions
 
 bigFactor = 999
 indexFactor = 999
 largestPalindrome = 0
 while bigFactor > 1:
-    biggestTestNum = dec_mult.decrement_multiply(bigFactor, indexFactor)
+    biggestTestNum = custom_math_functions.decrement_multiply(bigFactor, indexFactor)
     if largestPalindrome < biggestTestNum:
         largestPalindrome = biggestTestNum
     bigFactor -= 1

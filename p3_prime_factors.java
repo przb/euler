@@ -1,14 +1,12 @@
 /*
-
 The prime factors of 13195 are 5, 7, 13 and 29.
 
 What is the largest prime factor of the number 600851475143 ?
-
 */
-package project3;
+
 import java.util.ArrayList;
 
-public class primefactors{   
+public class p3_prime_factors{   
     
     //This method will check to see if the modulus of the dividend and the divisor is 0. 
     //If it was 0, then the resulting quotent is an integer.
