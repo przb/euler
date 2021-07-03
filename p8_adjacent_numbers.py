@@ -28,7 +28,7 @@
 # 
 
 # Retrieve the larger number from the file
-file = open('/home/przb/Workspaces/euler/p8_big_number.txt', 'r')
+file = open('p8_big_number.txt', 'r')
 BIG_NUMBER = file.read().strip().replace("\n", "")
 file.close()
 
