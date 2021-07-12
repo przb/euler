@@ -43,17 +43,25 @@ def horz_mult(row, ADJACENT_NUMS):
             maxProduct = tempProduct
         i += 1
     return maxProduct
-def vert_mult(twoDList, ADJACENT_NUMS):
-    
-    i = 0
-    col = 0
+
+def vert_mult(twoDList, row, ADJACENT_NUMS):
     maxProduct = 1
-    while i < len(twoDList) - ADJACENT_NUMS:
+    for n in range(row, len(twoDList)):
+        currentProduct = 1
+        for m in range(row, row + ADJACENT_NUMS):
+            currentProduct *= twoDList[m][n]
+            print(currentProduct)
+        if currentProduct > maxProduct:
+            maxProduct = currentProduct
+        currentProduct = 1
+    return maxProduct
 
-        multipliers = twoDList[i][col]
-        print(multipliers)
-        i += 1
-
+def diag_mult(twoDList, row, ADJACENT_NUMS):
+    for oneDList in range(0, len(twoDList)):
+        for m in range(0, len(twoDList)):
+            print(m)
+        
+            
 
 i = 0
 j = 0
@@ -61,4 +69,4 @@ j = 0
 ADJACENT_NUMS = 4
 # for fileRow in fileData:
 #    print(horz_mult(fileRow, ADJACENT_NUMS))
-vert_mult(fileData, ADJACENT_NUMS)
+print(diag_mult(fileData, 0, ADJACENT_NUMS))
