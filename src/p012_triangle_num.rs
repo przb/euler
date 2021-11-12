@@ -19,7 +19,6 @@ We can see that 28 is the first triangle number to have over five divisors.
 What is the value of the first triangle number to have over five hundred divisors?
 */
 
-use std::io;
 
 fn calc_triangle_num(iterations: u64) -> u64 {
     let mut i = 1;
@@ -36,9 +35,12 @@ fn find_factors(n: u64) -> Vec<u64> {
     let target: u64 = ((n as f64).sqrt() as u64) + 1;
     let mut i: u64 = 1;
     while i < target {
-        if n % i == 0 {
+        if n % i == 0 && n/i != i{
             v.push(i);
-            v.push(n/i)
+            v.push(n/i);
+        }
+        else if n/i == i{
+            v.push(i);
         }
         i+=1;
     }
@@ -46,33 +48,19 @@ fn find_factors(n: u64) -> Vec<u64> {
 }
 
 fn main() {
-    //Get a users input and parse it to an int
-    println!("Enter a number: ");
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).unwrap();
-    let test_int: u64 = input.trim().parse().unwrap();
-
-    let triangle_num = calc_triangle_num(test_int);
-
-    //Print the results
-    println!(
-        "triangle number: {}\n    after {} iterations",
-        triangle_num, test_int
-    );
-
 
     let mut i = 1;
+    let mut triangle_num;
+    let mut v: Vec<u64>;
     loop{
-        let triangle_num = calc_triangle_num(i);
-        let v: Vec<u64> = find_factors(triangle_num);
-        println!("The array is {:?}", v);
-        if v.len() >= 10{
-            
+        triangle_num = calc_triangle_num(i);
+        v = find_factors(triangle_num);
+        
+        if v.len() >= 500{
             break;
         }
         i+= 1;
-
     }
 
-    println!("Stopped when i equals {}", i);
+    println!("The triangle number is {}, which is triangle number {}", calc_triangle_num(i), i);
 }
