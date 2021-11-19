@@ -22,9 +22,9 @@ NOTE: Once the chain starts the terms are allowed to go above one million.
  * @brief 
  * 
  * @param n the number to have the algorithm fix
- * @return int the next number in the series. 
+ * @return int - the next number in the series. 
  */
-int nextCollatz(int n)
+unsigned long nextCollatz(unsigned long n)
 {
     if (n % 2 == 0)
     {
@@ -40,13 +40,13 @@ int nextCollatz(int n)
  * @brief 
  * 
  * @param n first number in the collatz sequence
- * @return int length of the chian with the input N. Count starts at 1.
+ * @return int - length of the chian with the input N. Count starts at 1.
  */
-int collatzChainLength(int n)
+unsigned long collatzChainLength(unsigned long n)
 {
-    int count = 1;
+    int count = 0;
 
-    while (n != 1 && n > 0)
+    while (n != 1 && n > 1)
     {
         n = nextCollatz(n);
         count++;
@@ -59,7 +59,7 @@ int collatzChainLength(int n)
  * @brief Not neccesary for this problem, but i misread the problem and made so i figured i may as well keep this method
  * 
  * @param n the minimum acceptable chain length
- * @return int the first number that produced the chain with an appropritate length
+ * @return int - the first number that produced the chain with an appropritate length
  */
 int findChainLengthOver(int n)
 {
@@ -80,11 +80,10 @@ int findChainLengthOver(int n)
  */
 int longestChain(int n)
 {
-    int longestSeed = 1;
-    int longestLength = 1;
+    long longestSeed = 1;
+    long longestLength = 1;
     for (int i = 1; i < n; i++)
     {
-        
         if (longestLength < collatzChainLength(i))
         {
             longestSeed = i;
@@ -96,8 +95,10 @@ int longestChain(int n)
 
 int main()
 {
-    int longestChainSeed = longestChain(1000000);
-    int longestChainLength = collatzChainLength(longestChainSeed);
-    printf("Longest Chain: %d\nChain Lenght: %d\n", longestChainSeed, longestChainLength);
+    unsigned long longestChainSeed = longestChain(1000000);
+    unsigned long longestChainLength = collatzChainLength(longestChainSeed);
+    printf("Longest Chain: %lu\nChain Lenght: %lu\n", longestChainSeed, longestChainLength);
+
+    //printf("%lu\n", collatzChainLength(837799));
     return 0;
 }
