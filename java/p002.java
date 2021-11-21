@@ -12,7 +12,7 @@ find the sum of the even-valued terms.
 
 import java.util.*;
 
-public class p002_fibonacci_sum {
+public class p002 {
     public static void main(String[] args){
 
         //Make an arraylist with the first two elements of the fibonacci sequence

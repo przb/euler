@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class p011_product_grid{
+public class p011 {
     public static void main(String[] args){
         try{
             File numberGridFile = new File("p11_number_grid.txt");

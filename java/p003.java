@@ -6,7 +6,7 @@ What is the largest prime factor of the number 600851475143 ?
 
 import java.util.ArrayList;
 
-public class p003_prime_factors {
+public class p003 {
 
     // This method will check to see if the modulus of the dividend and the divisor
     // is 0.
