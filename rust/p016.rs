@@ -14,13 +14,11 @@ fn main() {
         total = 0;
         for digit in sol.chars() {
             total += digit.to_digit(10).unwrap() as i32;
-
         }
         let difference: i32 = total - last_total;
         println!("2^{} = {}",i, solution);
-        println!("{:^10}", format!("{:?}", total));
-        println!("{:^10}Test", format!("{:?}", difference));
-        println!("{:width$}", "{}", width = 5, i);
+        println!("       Sum:{}",total);
+        println!("       Delta:{}\n", difference);
         //println!("{}", difference);
     }
 }
