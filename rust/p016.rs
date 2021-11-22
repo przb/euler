@@ -7,7 +7,7 @@ What is the sum of the digits of the number 2^1000?
 fn main() {
     let base: u128 = 2;
     let mut total: i32 = 0;
-    for i in 1..=128 {
+    for i in 1..=127 {
         let solution: u128 = base.pow(i);
         let sol = solution.to_string();
         let last_total = total;
@@ -16,8 +16,8 @@ fn main() {
             total += digit.to_digit(10).unwrap() as i32;
         }
         let difference: i32 = total - last_total;
-        println!("2^{} = {}",i, solution);
-        println!("       Sum:{}",total);
+        println!("2^{} = {}", i, solution);
+        println!("       Sum:{}", total);
         println!("       Delta:{}\n", difference);
         //println!("{}", difference);
     }
