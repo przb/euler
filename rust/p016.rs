@@ -17,8 +17,8 @@ fn main() {
         }
         let difference: i32 = total - last_total;
         println!("2^{} = {}", i, solution);
-        println!("       Sum:{}", total);
-        println!("       Delta:{}\n", difference);
+        println!("       Sum: {}", total);
+        println!("       Delta: {}\n", difference);
         //println!("{}", difference);
     }
 }

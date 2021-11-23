@@ -34,7 +34,7 @@ fn find_factors(n: u64) -> Vec<u64> {
     let mut v: Vec<u64> = Vec::new();
     let target: u64 = ((n as f64).sqrt() as u64) + 1;
     let mut i: u64 = 1;
-    while i < target {
+    while i < target {F
         if n % i == 0 && n/i != i{
             v.push(i);
             v.push(n/i);
