@@ -3,8 +3,19 @@
 
 What is the sum of the digits of the number 2^1000?
 */
+use std::vec;
 
-fn main() {
+fn power_two_vec(vec: &mut Vec<u8>)  {
+    let i = 0;
+    for num in vec{
+        vec[i] = *num * 2;
+    }
+    
+}
+
+
+/*
+fn old_main() {
     let base: u128 = 2;
     let mut total: i32 = 0;
     for i in 1..=127 {
@@ -20,5 +31,15 @@ fn main() {
         println!("       Sum: {}", total);
         println!("       Delta: {}\n", difference);
         //println!("{}", difference);
+        vector
     }
+}
+*/
+
+
+fn main() {
+    let mut v: Vec<u8> = vec!(1);
+    println!("{:?}", v);
+    power_two_vec(&mut v);
+    println!("{:?}", v);
 }
