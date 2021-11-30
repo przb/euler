@@ -11,6 +11,7 @@ contains 23 letters and 115 (one hundred and fifteen) contains 20 letters.
 The use of "and" when writing out numbers is in compliance with British usage.
 */
 
+// There is probably a way to optimize this, but at this time i do not know how to do so.
 const int ONE = 3;
 const int TWO = 3;
 const int THREE = 5;
@@ -18,60 +19,97 @@ const int FOUR = 4;
 const int FIVE = 4;
 const int SIX = 3;
 const int SEVEN = 5;
-const int EIGTH = 5;
+const int EIGHT = 5;
 const int NINE = 4;
 const int TEN = 3;
-const int ELEVEN = 3;
-const int TWELVE = 3;
-const int THIRTEEN = 3;
-const int FOURTEEN = 3;
-const int FIFTEEN = 3;
-const int SIXTEEN = 3;
-const int SEVENTEEN = 3;
-const int EIGHTEEN= 3;
-const int NINETEEN = 3;
-const int TWENTY = 3;
-const int THIRTY = 3;
-const int FORTY = 3;
-const int FIFTY = 3;
-const int SIXTY = 3;
-const int SEVENTY = 3;
-const int EIGHTY = 3;
-const int NINETY = 3;
-const int HUNDRED = 3;
-const int THOUSAND = 3;
-
+const int ELEVEN = 6;
+const int TWELVE = 6;
+const int THIRTEEN = 8;
+const int FOURTEEN = 8;
+const int FIFTEEN = 7;
+const int SIXTEEN = 7;
+const int SEVENTEEN = 9;
+const int EIGHTEEN = 8;
+const int NINETEEN = 8;
+const int TWENTY = 6;
+const int THIRTY = 6;
+const int FORTY = 5;
+const int FIFTY = 5;
+const int SIXTY = 5;
+const int SEVENTY = 7;
+const int EIGHTY = 6;
+const int NINETY = 6;
+const int HUNDRED = 7;
+const int THOUSAND = 8;
+const int AND = 3;
 
 int numOnes(int n)
 {
     switch (n)
     {
     case 1:
-        return 3;
+        return ONE;
         break;
     case 2:
-        return 0;
+        return TWO;
         break;
     case 3:
-        return 0;
+        return THREE;
         break;
     case 4:
-        return 0;
+        return FOUR;
         break;
     case 5:
-        return 0;
+        return FIVE;
         break;
     case 6:
-        return 0;
+        return SIX;
         break;
     case 7:
-        return 0;
+        return SEVEN;
         break;
     case 8:
-        return 0;
+        return EIGHT;
         break;
     case 9:
+        return NINE;
+        break;
+    }
+}
+
+int numTens(int n)
+{
+    switch (n)
+    {
+    case 1:
         return 0;
+        break;
+    case 2:
+        return TWENTY;
+        break;
+    case 3:
+        return THIRTY;
+        break;
+    case 4:
+        return FORTY;
+        break;
+    case 5:
+        return FIFTY;
+        break;
+    case 6:
+        return SIXTY;
+        break;
+    case 7:
+        return SEVENTY;
+        break;
+    case 8:
+        return EIGHTY;
+        break;
+    case 9:
+        return NINETY;
+        break;
+    case 0:
+        return TEN;
         break;
     }
 }
