@@ -11,6 +11,8 @@ contains 23 letters and 115 (one hundred and fifteen) contains 20 letters.
 The use of "and" when writing out numbers is in compliance with British usage.
 */
 
+#include <stdio.h>
+
 // There is probably a way to optimize this, but at this time i do not know how to do so.
 const int ONE = 3;
 const int TWO = 3;
@@ -43,10 +45,13 @@ const int HUNDRED = 7;
 const int THOUSAND = 8;
 const int AND = 3;
 
-int numOnes(int n)
+int num_ones(int n)
 {
-    switch (n)
+    switch (n % 10)
     {
+    case 0:
+        return 0;
+        break;
     case 1:
         return ONE;
         break;
@@ -77,9 +82,9 @@ int numOnes(int n)
     }
 }
 
-int numTens(int n)
+int num_tens(int n)
 {
-    switch (n)
+    switch (n / 10)
     {
     case 1:
         return 0;
@@ -114,8 +119,77 @@ int numTens(int n)
     }
 }
 
+int num_teens(int n)
+{
+    switch (n)
+    {
+    case 10:
+        return TEN;
+        break;
+    case 11:
+        return ELEVEN;
+        break;
+    case 12:
+        return TWELVE;
+        break;
+    case 13:
+        return THIRTEEN;
+        break;
+    case 14:
+        return FOURTEEN;
+        break;
+    case 15:
+        return FIFTEEN;
+        break;
+    case 16:
+        return SIXTEEN;
+        break;
+    case 17:
+        return SEVENTEEN;
+        break;
+    case 18:
+        return EIGHTEEN;
+        break;
+    case 19:
+        return NINETEEN;
+        break;
+    }
+}
+
+int num_hundreds(int n)
+{
+    //TODO fix this
+    return num_ones(n / 100) + 3 + num_tens(n / 10);
+}
+
+int find_str_length(int n)
+{
+    if (n < 10)
+    {
+        return num_ones(n);
+    }
+    else if (n < 20)
+    {
+        return num_teens(n);
+    }
+    else if (n < 100)
+    {
+        return num_tens(n) + num_ones(n);
+    }
+    else if (n < 1000)
+    {
+        //TODO Finish this
+        return num_hundreds(n);
+    }
+}
+
 int main()
 {
+    int test_num = 3;
 
+    for (int i = 0; i < 33; i++)
+    {
+        printf("%d has %d letters\n", i, find_str_length(i));
+    }
     return 0;
 }
