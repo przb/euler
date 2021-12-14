@@ -159,7 +159,7 @@ int num_teens(int n)
 int num_hundreds(int n)
 {
     //TODO fix this
-    return num_ones(n / 100) + 3 + num_tens(n / 10);
+    return num_ones(n / 100) + HUNDRED + AND + num_tens(n / 10);
 }
 
 int find_str_length(int n)
@@ -187,7 +187,7 @@ int main()
 {
     int test_num = 3;
 
-    for (int i = 0; i < 33; i++)
+    for (int i = 0; i < 111; i++)
     {
         printf("%d has %d letters\n", i, find_str_length(i));
     }
