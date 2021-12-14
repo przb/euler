@@ -18,7 +18,7 @@ be solved by brute force, and requires a clever method! ;o)
  */
 use std::fs;
 
-fn parse_file_contents(filename: &str) -> [[i32];] {
+fn parse_file_contents(filename: &str) -> Vec<Vec<u8>> {
     let contents = fs::read_to_string(filename).expect("Something went wrong reading the file");
 
     let mut parsed_contents: Vec<Vec<u8>> = Vec::new();
