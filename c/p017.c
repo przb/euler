@@ -14,6 +14,7 @@ The use of "and" when writing out numbers is in compliance with British usage.
 #include <stdio.h>
 
 // There is probably a way to optimize this, but at this time i do not know how to do so.
+// There is some inconsistancy in the code, but it worked, will optimize later.
 const int ONE = 3;
 const int TWO = 3;
 const int THREE = 5;
@@ -47,38 +48,47 @@ const int AND = 3;
 
 int num_ones(int n)
 {
-    switch (n % 10)
+    if (n == 0)
     {
-    case 0:
         return 0;
-        break;
-    case 1:
-        return ONE;
-        break;
-    case 2:
-        return TWO;
-        break;
-    case 3:
-        return THREE;
-        break;
-    case 4:
-        return FOUR;
-        break;
-    case 5:
-        return FIVE;
-        break;
-    case 6:
-        return SIX;
-        break;
-    case 7:
-        return SEVEN;
-        break;
-    case 8:
-        return EIGHT;
-        break;
-    case 9:
-        return NINE;
-        break;
+    }
+    else
+    {
+        {
+            switch (n % 10)
+            {
+            case 0:
+                return 0;
+                break;
+            case 1:
+                return ONE;
+                break;
+            case 2:
+                return TWO;
+                break;
+            case 3:
+                return THREE;
+                break;
+            case 4:
+                return FOUR;
+                break;
+            case 5:
+                return FIVE;
+                break;
+            case 6:
+                return SIX;
+                break;
+            case 7:
+                return SEVEN;
+                break;
+            case 8:
+                return EIGHT;
+                break;
+            case 9:
+                return NINE;
+                break;
+            }
+        }
     }
 }
 
@@ -118,7 +128,6 @@ int num_tens(int n)
         break;
     }
 }
-
 int num_teens(int n)
 {
     switch (n)
@@ -158,8 +167,19 @@ int num_teens(int n)
 
 int num_hundreds(int n)
 {
-    //TODO fix this
-    return num_ones(n / 100) + HUNDRED + AND + num_tens(n / 10);
+    if (n % 100 == 0)
+    {
+        return num_ones(n / 100) + HUNDRED;
+    }
+    else
+    {
+        return num_ones(n / 100) + HUNDRED + AND;
+    }
+}
+
+int num_thousands(int n)
+{
+    return find_str_length(n / 1000) + THOUSAND;
 }
 
 int find_str_length(int n)
@@ -174,22 +194,28 @@ int find_str_length(int n)
     }
     else if (n < 100)
     {
-        return num_tens(n) + num_ones(n);
+        return num_tens(n) + find_str_length(n % 10);
     }
     else if (n < 1000)
     {
-        //TODO Finish this
-        return num_hundreds(n);
+        return num_hundreds(n) + find_str_length(n % 100);
+    }
+    else if (n < 1000000)
+    {
+        return num_thousands(n) + find_str_length(n % 1000);
     }
 }
 
 int main()
 {
-    int test_num = 3;
+    int total = 0;
 
-    for (int i = 0; i < 111; i++)
+    for (int i = 1; i <= 1000; i++)
     {
-        printf("%d has %d letters\n", i, find_str_length(i));
+        int num_letters = find_str_length(i);
+        total += num_letters;
+        printf("%d has %d letters\n", i, num_letters);
     }
+    printf("Total letters from 1 to 1000: %d\n", total);
     return 0;
 }
