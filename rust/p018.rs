@@ -33,8 +33,17 @@ fn parse_file_contents(filename: &str) -> Vec<Vec<u32>> {
     return parsed_contents;
 }
 
+fn find_path2(contents : &Vec<Vec<u32>>){
+
+    for i in 0..contents.len(){
+        for j in 0..contents[i].len(){
+            println!("{}", contents[i][j]);
+        }
+    }
+}
+
 fn find_path(contents: &Vec<Vec<u32>>) {
-    let path: [u32; MAIN_ARRAY_LENGTH] = [0; MAIN_ARRAY_LENGTH];
+    let mut path: [u32; MAIN_ARRAY_LENGTH] = [0; MAIN_ARRAY_LENGTH];
     let mut current_sum: u32 = contents[0][0].into();
     for i in 0..contents.len() - 1 {
         let line = contents[i].clone();
@@ -42,15 +51,26 @@ fn find_path(contents: &Vec<Vec<u32>>) {
         for j in 0..line.len() {
             let sum_one = current_sum + next_line[j];
             let sum_two = current_sum + next_line[j + 1];
-            println!("Sum one: {} + {} = {}", line[j], next_line[j], sum_one);
-            println!("Sum two: {} + {} = {}", line[j], next_line[j + 1], sum_two);
+            println!("Sum one: {} + {} = {}", 
+                current_sum, 
+                next_line[j],
+                sum_one);
+            println!(
+                "Sum two: {} + {} = {}\n",
+                current_sum,
+                next_line[j + 1],
+                sum_two
+            );
             if sum_one > sum_two {
                 current_sum = sum_one;
-            }else{
+                path[i] = next_line[j];
+            } else {
                 current_sum = sum_two;
+                path[i] = next_line[j + 1];
             }
         }
     }
+    println!("{:?}", path)
 }
 
 // Current Algorithm
@@ -65,6 +85,6 @@ fn main() {
 
     let parsed_contents = parse_file_contents(filename);
 
-    find_path(&parsed_contents);
+    find_path2(&parsed_contents);
     // println!("{:?}", parsed_contents);
 }
