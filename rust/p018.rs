@@ -33,44 +33,30 @@ fn parse_file_contents(filename: &str) -> Vec<Vec<u32>> {
     return parsed_contents;
 }
 
-fn find_path2(contents : &Vec<Vec<u32>>){
+fn find_path(contents: &Vec<Vec<u32>>) -> [usize; MAIN_ARRAY_LENGTH] {
+    let mut indexes: [usize; MAIN_ARRAY_LENGTH] = [0; MAIN_ARRAY_LENGTH];
 
-    for i in 0..contents.len(){
-        for j in 0..contents[i].len(){
-            println!("{}", contents[i][j]);
+    let sum = contents[0][0];
+    let mut i = 0;
+    for row_index in 1..contents.len() {
+        let sum_one = contents[row_index][i] + sum;
+        let sum_two = contents[row_index][i + 1] + sum;
+        if sum_one < sum_two{
+            i += 1;
         }
+        indexes[row_index] = i;
     }
+    return indexes;
 }
 
-fn find_path(contents: &Vec<Vec<u32>>) {
-    let mut path: [u32; MAIN_ARRAY_LENGTH] = [0; MAIN_ARRAY_LENGTH];
-    let mut current_sum: u32 = contents[0][0].into();
-    for i in 0..contents.len() - 1 {
-        let line = contents[i].clone();
-        let next_line = contents[i + 1].clone();
-        for j in 0..line.len() {
-            let sum_one = current_sum + next_line[j];
-            let sum_two = current_sum + next_line[j + 1];
-            println!("Sum one: {} + {} = {}", 
-                current_sum, 
-                next_line[j],
-                sum_one);
-            println!(
-                "Sum two: {} + {} = {}\n",
-                current_sum,
-                next_line[j + 1],
-                sum_two
-            );
-            if sum_one > sum_two {
-                current_sum = sum_one;
-                path[i] = next_line[j];
-            } else {
-                current_sum = sum_two;
-                path[i] = next_line[j + 1];
-            }
-        }
+fn find_total(contents: &Vec<Vec<u32>>, path: [usize;MAIN_ARRAY_LENGTH]) -> u32{
+    let mut total = 0;
+    let mut i: usize = 0;
+    for index in path{
+        total += contents[i][index];
+        i += 1;
     }
-    println!("{:?}", path)
+    return total;
 }
 
 // Current Algorithm
@@ -85,6 +71,10 @@ fn main() {
 
     let parsed_contents = parse_file_contents(filename);
 
-    find_path2(&parsed_contents);
+    let path = find_path(&parsed_contents);
+
+    let total = find_total(&parsed_contents, path);
+
+    println!("{}", total)
     // println!("{:?}", parsed_contents);
 }
