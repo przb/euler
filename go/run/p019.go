@@ -14,6 +14,7 @@ func getDayOfTheWeek() int {
 func getDay() int {
 	return day
 }
+
 func nextDay() {
 	if dayOfTheWeek == 7 {
 		dayOfTheWeek = 1
@@ -31,13 +32,17 @@ func nextDay() {
 		} else {
 			day++
 		}
-	} else if (month == sep || month == apr || month == jun || month == nov) && day == 30 {
+	} else if (monthHas30Days()) && day == 30 {
 		nextMonth()
 	} else if day == 31 {
 		nextMonth()
 	} else {
 		day++
 	}
+}
+
+func monthHas30Days() bool {
+	return month == sep || month == apr || month == jun || month == nov
 }
 
 func getMonth() int {
